@@ -1,0 +1,50 @@
+
+        try {
+
+            File f1 = new File(System.getProperty("user.home") + "\\Controller Files");
+            if (!f1.exists()) {
+                f1.mkdir();
+            }
+            File f = new File(System.getProperty("user.home") + "\\Controller Files\\" + lb_pcname.getText() + ".xls");
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet("FirstSheet");
+
+            HSSFRow row0 = sheet.createRow((short) 0);
+            row0.createCell(0).setCellValue("PC Name : ");
+            row0.createCell(1).setCellValue(lb_pcname.getText());
+
+            HSSFRow row1 = sheet.createRow((short) 1);
+            row1.createCell(0).setCellValue("OS Name : ");
+            row1.createCell(1).setCellValue(lb_osname.getText());
+
+            HSSFRow row2 = sheet.createRow((short) 2);
+            row2.createCell(0).setCellValue("OS Type : ");
+            row2.createCell(1).setCellValue(lb_ostype.getText());
+
+            HSSFRow row3 = sheet.createRow((short) 3);
+            row3.createCell(0).setCellValue("OS Version");
+            row3.createCell(1).setCellValue(lb_osversion.getText());
+            HSSFRow row4 = sheet.createRow((short) 4);
+            row4.createCell(0).setCellValue("Processor");
+            row4.createCell(1).setCellValue(lb_processor.getText());
+
+            HSSFRow row5 = sheet.createRow((short) 5);
+            row5.createCell(0).setCellValue("No of Cores");
+            row5.createCell(1).setCellValue(lb_cores.getText());
+
+            HSSFRow row6 = sheet.createRow((short) 6);
+            row6.createCell(0).setCellValue("MAC Address");
+            row6.createCell(1).setCellValue(lb_mac.getText());
+
+            HSSFRow row7 = sheet.createRow((short) 7);
+            row7.createCell(0).setCellValue("RAM Size");
+            row7.createCell(1).setCellValue(lb_ram.getText());
+
+            FileOutputStream fileOut = new FileOutputStream(f);
+            workbook.write(fileOut);
+            fileOut.close();
+            //System.out.println("Your excel file has been generated!");
+            int r = JOptionPane.showConfirmDialog(rootPane, "Excel File has been generated!!!!!!!\n Do you want to open? ");
+            if (r == JOptionPane.YES_OPTION) {
+                Desktop.getDesktop().open(f);
+            }
